@@ -116,7 +116,7 @@ function PlaintextFilesChallenge() {
 
     for( let i = 0; i < files.length; i++){
       let retrievedObject = JSON.parse(localStorage.getItem(files[i].name));
-
+      //use the version in storage if it exists
       if(retrievedObject) {
         let updatedFile = new File(
           [
@@ -135,6 +135,7 @@ function PlaintextFilesChallenge() {
     setFiles(files);
   }}, []);
 
+  //write file to files array
   const write = file => {
     console.log('Writing soon... ', file.name);
     let currFiles = files;

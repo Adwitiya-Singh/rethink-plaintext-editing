@@ -35,6 +35,8 @@ function PlaintextEditor({ file, write }) {
           lastModified: Date.now()
         }
       );
+      //Add changed file to localstorage - adding it this way since a File object cannot be stored as a string - https://stackoverflow.com/a/19198817
+     // Just storing file content and lastModified for this reason
     localStorage.setItem(updatedFile.name, JSON.stringify([updatedFile.lastModified, event.target.value]))
     write(updatedFile)
   }
