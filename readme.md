@@ -21,3 +21,9 @@ Implemented:
 - `txt` Editing with real time autosave
 - `markdown`, `js` and `json` editing with rich real time previews(also with real time autosave)
 - local filestorage so changes persist across reloads
+
+Future works:
+
+- Make Storage not be client side - write a dedicated FileStorage service.
+- Add more CSS to make product look more presentable
+- Make PlaintextEditor into a reusable component and use it inside MarkdownEditor
