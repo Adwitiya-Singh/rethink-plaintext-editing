@@ -20,7 +20,7 @@ Implemented:
 
 - `txt` Editing with real time autosave
 - `markdown`, `js` and `json` editing with rich real time previews(also with real time autosave)
-- local filestorage so changes persist across reloads
+- local filestorage so changes and lastModified timestamp persist across reloads
 
 Future works:
 
