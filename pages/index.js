@@ -111,9 +111,29 @@ function PlaintextFilesChallenge() {
   const [activeFile, setActiveFile] = useState(null);
 
   useEffect(() => {
-    const files = listFiles();
+
+    let files = listFiles();
+
+    for( let i = 0; i < files.length; i++){
+      let retrievedObject = JSON.parse(localStorage.getItem(files[i].name));
+
+      if(retrievedObject) {
+        let updatedFile = new File(
+          [
+            retrievedObject[1]
+          ],
+          files[i].name,
+          {
+            type: files[i].type,
+            lastModified: retrievedObject[0]
+          }
+        );
+
+        files.splice(i, 1, updatedFile);
+      }
+
     setFiles(files);
-  }, []);
+  }}, []);
 
   const write = file => {
     console.log('Writing soon... ', file.name);
