@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { listFiles } from '../files';
 
 // Used below, these need to be registered
-import MarkdownEditor from '../MarkdownEditor';
+import MarkdownEditor from '../components/MarkdownEditor';
 import PlaintextEditor from '../components/PlaintextEditor';
 
 import IconPlaintextSVG from '../public/icon-plaintext.svg';
@@ -111,9 +111,29 @@ function PlaintextFilesChallenge() {
   const [activeFile, setActiveFile] = useState(null);
 
   useEffect(() => {
-    const files = listFiles();
+
+    let files = listFiles();
+
+    for( let i = 0; i < files.length; i++){
+      let retrievedObject = JSON.parse(localStorage.getItem(files[i].name));
+
+      if(retrievedObject) {
+        let updatedFile = new File(
+          [
+            retrievedObject[1]
+          ],
+          files[i].name,
+          {
+            type: files[i].type,
+            lastModified: retrievedObject[0]
+          }
+        );
+
+        files.splice(i, 1, updatedFile);
+      }
+
     setFiles(files);
-  }, []);
+  }}, []);
 
   const write = file => {
     console.log('Writing soon... ', file.name);

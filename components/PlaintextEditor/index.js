@@ -35,7 +35,8 @@ function PlaintextEditor({ file, write }) {
           lastModified: Date.now()
         }
       );
-      write(updatedFile)
+    localStorage.setItem(updatedFile.name, JSON.stringify([updatedFile.lastModified, event.target.value]))
+    write(updatedFile)
   }
 
   return (

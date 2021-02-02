@@ -35,6 +35,7 @@ function MarkdownEditor({ file, write }) {
         lastModified: Date.now()
       }
     );
+    localStorage.setItem(updatedFile.name, JSON.stringify([updatedFile.lastModified, event.target.value]))
     write(updatedFile)
   }
 
